@@ -24,6 +24,22 @@
       else [])
     (builtins.attrNames (builtins.readDir dir));
 
+  # Find .nix files but exclude package.nix files (they're not modules)
+  findNixFilesExcludePackages = dir:
+    lib.concatMap (name: let
+      path = dir + "/${name}";
+      type = builtins.readFileType path;
+    in
+      if type == "directory"
+      then
+        if name == "modules" || name == "types"
+        then []
+        else findNixFilesExcludePackages path
+      else if type == "regular" && lib.hasSuffix ".nix" name && name != "package.nix"
+      then [path]
+      else [])
+    (builtins.attrNames (builtins.readDir dir));
+
   # Import only specific directories we need for WSL
   imports =
     # Core config modules (programs, user, home, etc)
@@ -33,6 +49,14 @@
     # Programs modules
     ++ (if builtins.pathExists "${mainFlake}/modules/programs"
       then findNixFiles "${mainFlake}/modules/programs"
+      else [])
+    # Rices
+    ++ (if builtins.pathExists "${mainFlake}/rices"
+      then findNixFiles "${mainFlake}/rices"
+      else [])
+    # Packages (exclude package.nix files as they're not modules)
+    ++ (if builtins.pathExists "${mainFlake}/packages"
+      then findNixFilesExcludePackages "${mainFlake}/packages"
       else [])
     # Overlays
     ++ (if builtins.pathExists "${mainFlake}/overlays"

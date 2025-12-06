@@ -21,8 +21,6 @@
       # Scan local hosts and a single import-all module
       paths = [
         ./hosts
-        ./rices
-        ./modules
         ./import-main-modules.nix
       ];
 
