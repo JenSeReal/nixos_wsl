@@ -28,7 +28,4 @@ in {
     if builtins.pathExists "${mainFlake}/modules/programs"
     then findNixFiles "${mainFlake}/modules/programs"
     else [];
-
-  # Provide moduleSystem arg that denix modules expect
-  config._module.args.moduleSystem = lib.mkDefault "nixos";
 }

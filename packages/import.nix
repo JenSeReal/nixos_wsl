@@ -27,7 +27,4 @@ in {
     if builtins.pathExists "${mainFlake}/packages"
     then findNixFilesExcludePackages "${mainFlake}/packages"
     else [];
-
-  # Provide moduleSystem arg that denix modules expect
-  config._module.args.moduleSystem = lib.mkDefault "nixos";
 }
