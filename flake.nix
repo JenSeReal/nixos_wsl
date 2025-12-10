@@ -18,10 +18,13 @@
       moduleSystem = "nixos";
       homeManagerUser = "jfp";
 
-      # Scan local hosts and a single import-all module
+      # Scan local hosts and modules
       paths = [
         ./hosts
-        ./import-main-modules.nix
+        ./modules
+        ./overlays
+        ./packages
+        ./rices
       ];
 
       # Add WSL module

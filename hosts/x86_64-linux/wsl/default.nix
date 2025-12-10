@@ -14,24 +14,25 @@ delib.host {
   };
 
   myconfig = {
+    features.k8s-tools.enable = true;
     programs = {
       bat.enable = true;
-      #     btop.enable = true;
-      #     curl.enable = true;
-      #     carapace.enable = true;
-      #     codium.enable = true;
-      #     direnv.enable = true;
-      #     devenv.enable = true;
-      #     git.enable = true;
-      #     helix.enable = true;
-      #     sudo.enable = true;
-      #     fish.enable = true;
-      #     neovim.enable = true;
-      #     nh.enable = true;
-      #     nix-ld.enable = true;
-      #     nu.enable = true;
-      #     starship.enable = true;
-      #     zed.enable = true;
+      btop.enable = true;
+      curl.enable = true;
+      carapace.enable = true;
+      codium.enable = true;
+      direnv.enable = true;
+      devenv.enable = true;
+      git.enable = true;
+      helix.enable = true;
+      sudo.enable = true;
+      fish.enable = true;
+      neovim.enable = true;
+      nh.enable = true;
+      nix-ld.enable = true;
+      nu.enable = true;
+      starship.enable = true;
+      zed.enable = true;
     };
   };
 }
