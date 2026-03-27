@@ -13,8 +13,8 @@
     main-config,
     nixos-wsl,
     ...
-  } @ inputs:
-    denix.lib.configurations {
+  } @ inputs: {
+    nixosConfigurations = denix.lib.configurations {
       moduleSystem = "nixos";
       homeManagerUser = "jfp";
 
@@ -43,4 +43,5 @@
           };
       };
     };
+  };
 }
